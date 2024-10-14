@@ -1,29 +1,35 @@
-document.getElementById('jobForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    
-    const title = document.getElementById('title').value;
-    const organization = document.getElementById('organization').value;
-    const location = document.getElementById('location').value;
-    const salary = document.getElementById('salary').value;
-    const holidays = document.getElementById('holidays').value;
+const form = document.getElementById('jobForm');
 
-    const templateParams = {
-        title: title,
-        organization: organization,
-        location: location,
-        salary: salary,
-        holidays: holidays,
-    };
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-    emailjs.send(service_pk08ip8, template_ukx55yr, templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            document.getElementById('responseMessage').textContent = 'Job vacancy submitted successfully!';
-            document.getElementById('responseMessage').style.color = 'green';
-            document.getElementById('jobForm').reset(); // Reset form fields
-        }, function(error) {
-            console.log('FAILED...', error);
-            document.getElementById('responseMessage').textContent = 'Error submitting form. Please try again.';
-            document.getElementById('responseMessage').style.color = 'red';
-        });
+  const title = document.getElementById('title').value;
+  const organization = document.getElementById('organization').value;
+  const location = document.getElementById('location').value;
+  const salary = document.getElementById('salary').value;
+  const holidays = document.getElementById('holidays').value;
+  const contactEmail = document.getElementById('contactEmail').value;
+  const contactPhone = document.getElementById('contactPhone').value;
+
+  const formData = {
+    title,
+    organization,
+    location,
+    salary,
+    holidays,
+    contactEmail,
+    contactPhone,
+  };
+
+  // Send a POST request to the serverless function
+  fetch('/submit-job', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
 });
