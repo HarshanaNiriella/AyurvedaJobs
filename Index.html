@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayurvedic Job Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <h1>Ayurvedic Job Portal</h1>
+  </header>
+
+  <div class="container">
+    <div class="form-card">
+      <h2>Submit a Job Vacancy</h2>
+      <form id="jobForm">
+        <div class="form-group">
+          <label for="title">Job Title</label>
+          <input type="text" id="title" placeholder="Enter job title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="organization">Organization</label>
+          <input type="text" id="organization" placeholder="Enter organization name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="Enter location" required>
+        </div>
+
+        <div class="form-group">
+          <label for="salary">Salary</label>
+          <input type="text" id="salary" placeholder="Enter salary (optional)">
+        </div>
+
+        <div class="form-group">
+          <label for="holidays">Holidays per Month</label>
+          <input type="number" id="holidays" placeholder="Enter number of holidays">
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Ayurvedic Job Portal By Dr.Harshana Niriella. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
