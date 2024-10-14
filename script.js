@@ -15,7 +15,7 @@ document.getElementById('jobForm').addEventListener('submit', function(event) {
         holidays: holidays,
     };
 
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+    emailjs.send(service_pk08ip8, template_ukx55yr, templateParams)
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
             document.getElementById('responseMessage').textContent = 'Job vacancy submitted successfully!';
