@@ -10,7 +10,7 @@ document.getElementById('jobForm').addEventListener('submit', async (e) => {
   };
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbx4XNOgAwB5kVHVPet3uP5bSQDTREzey6-IKZHE7wuiRudTbFNAfVBuySwcjZQsACIg8w/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycby6eP4ADuqLwn7UTie7JrcHulmssdpRCn4MmGgM_x6lGiUGcrLekCmSuJtm4p82j8do6Q/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
