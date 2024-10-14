@@ -1,4 +1,4 @@
-document.getElementById('jobForm').addEventListener('submit', async function(event) {
+document.getElementById('jobForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
     
     const title = document.getElementById('title').value;
@@ -7,29 +7,23 @@ document.getElementById('jobForm').addEventListener('submit', async function(eve
     const salary = document.getElementById('salary').value;
     const holidays = document.getElementById('holidays').value;
 
-    const response = await fetch('https://script.google.com/macros/s/AKfycby6eP4ADuqLwn7UTie7JrcHulmssdpRCn4MmGgM_x6lGiUGcrLekCmSuJtm4p82j8do6Q/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            title,
-            organization,
-            location,
-            salary,
-            holidays,
-        }),
-    });
+    const templateParams = {
+        title: title,
+        organization: organization,
+        location: location,
+        salary: salary,
+        holidays: holidays,
+    };
 
-    const result = await response.json();
-    const messageElement = document.getElementById('responseMessage');
-
-    if (result.status === 'success') {
-        messageElement.textContent = 'Job vacancy submitted successfully!';
-        messageElement.style.color = 'green';
-        document.getElementById('jobForm').reset(); // Reset form fields
-    } else {
-        messageElement.textContent = `Error: ${result.message}`;
-        messageElement.style.color = 'red';
-    }
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            document.getElementById('responseMessage').textContent = 'Job vacancy submitted successfully!';
+            document.getElementById('responseMessage').style.color = 'green';
+            document.getElementById('jobForm').reset(); // Reset form fields
+        }, function(error) {
+            console.log('FAILED...', error);
+            document.getElementById('responseMessage').textContent = 'Error submitting form. Please try again.';
+            document.getElementById('responseMessage').style.color = 'red';
+        });
 });
