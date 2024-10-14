@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script>
         (function(){
-            emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+            emailjs.init("8yaYDV_tcxiUQcqgc"); // Your EmailJS Public Key
         })();
     </script>
 </head>
@@ -43,10 +43,41 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Ayurveda Job Portal By Dr.Harshana Niriella.
-        Enjoy & Give Feedbacks.</p>
+        <p>&copy; 2024 Ayurveda Job Portal By Dr. Harshana Niriella. Enjoy & Give Feedback.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('jobForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const title = document.getElementById('title').value;
+            const organization = document.getElementById('organization').value;
+            const location = document.getElementById('location').value;
+            const salary = document.getElementById('salary').value;
+            const holidays = document.getElementById('holidays').value;
+
+            const templateParams = {
+                from_name: 'Ayurveda Job Portal',
+                to_name: 'Dr. Harshana Niriella', // For display in email
+                title: title,
+                organization: organization,
+                location: location,
+                salary: salary,
+                holidays: holidays,
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_pk08ip8', 'template_x53tjfv', templateParams)
+                .then((response) => {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    document.getElementById('responseMessage').innerText = 'Job vacancy submitted successfully!';
+                }, (err) => {
+                    console.error('Failed to send email. Error: ', err);
+                    document.getElementById('responseMessage').innerText = 'Failed to submit the job vacancy. Please try again.';
+                });
+        });
+    </script>
 </body>
 </html>
