@@ -1,83 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayurveda Job Portal</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("8yaYDV_tcxiUQcqgc"); // Your EmailJS Public Key
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Vacancy Form</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Ayurveda Job Portal for Sri Lankan Ayurvedic Professionals</h1>
-    </header>
+  <h1>Job Vacancy Form</h1>
+  <form id="jobForm">
+    <label for="title">Job Title:</label>
+    <input type="text" id="title" name="title" required><br><br>
     
-    <main>
-        <section class="job-form">
-            <h2>Submit Job Vacancy</h2>
-            <form id="jobForm">
-                <label for="title">Job Title:</label>
-                <input type="text" id="title" name="title" required>
+    <label for="organization">Organization:</label>
+    <input type="text" id="organization" name="organization" required><br><br>
+    
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required><br><br>
+    
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary" required><br><br>
+    
+    <label for="holidays">Holidays:</label>
+    <input type="text" id="holidays" name="holidays" required><br><br>
+    
+    <label for="contactEmail">Contact Email:</label>
+    <input type="email" id="contactEmail" name="contactEmail" required><br><br>
+    
+    <label for="contactPhone">Contact Mobile Phone:</label>
+    <input type="tel" id="contactPhone" name="contactPhone" required><br><br>
+    
+    <button type="submit">Submit</button>
+  </form>
 
-                <label for="organization">Organization:</label>
-                <input type="text" id="organization" name="organization" required>
-
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" required>
-
-                <label for="salary">Salary:</label>
-                <input type="text" id="salary" name="salary" required>
-
-                <label for="holidays">Holidays per Month:</label>
-                <input type="number" id="holidays" name="holidays" required>
-
-                <button type="submit">Submit</button>
-            </form>
-            <div id="responseMessage"></div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Ayurveda Job Portal By Dr. Harshana Niriella. Enjoy & Give Feedback.</p>
-    </footer>
-
-    <script>
-        // Handle form submission
-        document.getElementById('jobForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Collect form data
-            const title = document.getElementById('title').value;
-            const organization = document.getElementById('organization').value;
-            const location = document.getElementById('location').value;
-            const salary = document.getElementById('salary').value;
-            const holidays = document.getElementById('holidays').value;
-
-            const templateParams = {
-                from_name: 'Ayurveda Job Portal',
-                to_name: 'Dr. Harshana Niriella', // For display in email
-                title: title,
-                organization: organization,
-                location: location,
-                salary: salary,
-                holidays: holidays,
-            };
-
-            // Send email using EmailJS
-            emailjs.send('service_pk08ip8', 'template_x53tjfv', templateParams)
-                .then((response) => {
-                    console.log('Email sent successfully!', response.status, response.text);
-                    document.getElementById('responseMessage').innerText = 'Job vacancy submitted successfully!';
-                }, (err) => {
-                    console.error('Failed to send email. Error: ', err);
-                    document.getElementById('responseMessage').innerText = 'Failed to submit the job vacancy. Please try again.';
-                });
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
