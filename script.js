@@ -1,5 +1,5 @@
 document.getElementById('jobForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+  e.preventDefault();  // Prevent the form from refreshing the page
 
   const data = {
     title: document.getElementById('title').value,
@@ -10,7 +10,7 @@ document.getElementById('jobForm').addEventListener('submit', async (e) => {
   };
 
   try {
-    const response = await fetch('YOUR_DEPLOYMENT_URL', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbx4XNOgAwB5kVHVPet3uP5bSQDTREzey6-IKZHE7wuiRudTbFNAfVBuySwcjZQsACIg8w/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -19,12 +19,12 @@ document.getElementById('jobForm').addEventListener('submit', async (e) => {
     const result = await response.json();
     if (result.status === 'success') {
       alert('Job submitted successfully!');
-      e.target.reset();
+      e.target.reset();  // Reset the form after successful submission
     } else {
-      alert('Failed to submit the job. Please try again.');
+      alert('Submission failed. Please try again.');
     }
   } catch (error) {
     console.error('Error:', error);
-    alert('Something went wrong. Please try again later.');
+    alert('An error occurred. Please try again later.');
   }
 });
